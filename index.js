@@ -371,18 +371,18 @@ function sendAutoMessage(
       console.error("Error sending message:", error);
     });
 
-  bot
-    .sendMessage(channel1, message, {
-      parse_mode: "HTML",
-      reply_markup: button_reply,
-      disable_web_page_preview: true,
-    })
-    .then(() => {
-      console.log("Message sent successfully");
-    })
-    .catch((error) => {
-      console.error("Error sending message:", error);
-    });
+  // bot
+  //   .sendMessage(channel1, message, {
+  //     parse_mode: "HTML",
+  //     reply_markup: button_reply,
+  //     disable_web_page_preview: true,
+  //   })
+  //   .then(() => {
+  //     console.log("Message sent successfully");
+  //   })
+  //   .catch((error) => {
+  //     console.error("Error sending message:", error);
+  //   });
 }
 
 main();
