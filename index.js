@@ -318,8 +318,8 @@ function sendAutoMessage(
   tg_honeypot_symbol,
   tg_lock_symbol
 ) {
-  const channel = "-1002048202426"; // Replace with your channel username or ID
-  const channel1 = "-1001969261580";
+  const channel = process.env.CHANNEL_ID; // Replace with your channel username or ID
+  // const channel1 = "-1001969261580";
   const message = `
         🌞 Token Name | ${tg_name}
 📜 CA: <code>${tg_address}</code>
