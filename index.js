@@ -20,6 +20,7 @@ import { ethers } from "ethers/lib/index.js";
 import { match } from "./utils.js";
 import { getUniv2PairAddress } from "./univ2funcs.js";
 import IERC20ABI from "./ABIs/IERC20.js";
+import { url } from "inspector";
 const require = createRequire(import.meta.url);
 const abiDecoder = require("abi-decoder");
 const TelegramBot = require("node-telegram-bot-api");
@@ -319,7 +320,7 @@ function sendAutoMessage(
   tg_lock_symbol
 ) {
   const channel = process.env.CHANNEL_ID; // Replace with your channel username or ID
-  // const channel1 = "-1001969261580";
+  const channel1 = "-1001969261580";
   const message = `
         🌞 Token Name | ${tg_name}
 📜 CA: <code>${tg_address}</code>
@@ -337,31 +338,25 @@ function sendAutoMessage(
 📈 <a href="https://www.dextools.io/app/en/ether/pair-explorer/${tg_address}">Dextools</a> | <a href="https://dexscreener.com/ethereum/${tg_address}">DexScreener</a> | <a href="https://dexspy.io/eth/token/${tg_address}">DexSpy</a> | <a href="https://www.dexview.com/eth/${tg_address}">DexV</a>
     `;
 
-  const button_reply = {
-    inline_keyboard: [
-      [
-        {
-          text: "🍌 BUY Proge with Banana Sniper 🍌",
-          url: "https://t.me/BananaGunSniper_bot",
-        },
-      ],
-      [
-        { text: "🤖 BUY with Maestro 🤖", url: "https://t.me/maestro" },
-        { text: "🤖 BUY with Maestro Pro 🤖", url: "https://t.me/maestro" },
-      ],
-      [
-        {
-          text: "🎯 BUY Proge with Magnum Sniper 🎯",
-          url: "https://t.me/magnum_trade_bot",
-        },
-      ],
-    ],
-  };
+  // const button_reply = {
+  //   inline_keyboard: [
+  //     [
+  //       {
+  //         text: "🔫 Monie Sniper",
+  //         url: "https://t.me/monie_sniper_bot",
+  //       },
+  //     ],
+  //     [
+  //       { text: "Monie Channel", url: "https://t.me/moniebotportal" },
+  //       { text: "Monie Scan", url: "https://" },
+  //     ],
+  //   ],
+  // };
 
   bot
     .sendMessage(channel, message, {
       parse_mode: "HTML",
-      reply_markup: button_reply,
+      // reply_markup: button_reply,
       disable_web_page_preview: true,
     })
     .then(() => {
@@ -374,7 +369,7 @@ function sendAutoMessage(
   // bot
   //   .sendMessage(channel1, message, {
   //     parse_mode: "HTML",
-  //     reply_markup: button_reply,
+  //     // reply_markup: button_reply,
   //     disable_web_page_preview: true,
   //   })
   //   .then(() => {
