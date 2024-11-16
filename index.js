@@ -25,6 +25,7 @@ const require = createRequire(import.meta.url);
 const abiDecoder = require("abi-decoder");
 const TelegramBot = require("node-telegram-bot-api");
 abiDecoder.addABI(IUniswapV2PairAbi);
+const express = require("express");
 
 const iface = new ethers.utils.Interface(IUniswapV2PairAbi);
 const bot = new TelegramBot(process.env.BOT_ID, { polling: true });
@@ -320,7 +321,7 @@ function sendAutoMessage(
   tg_lock_symbol
 ) {
   const channel = process.env.CHANNEL_ID; // Replace with your channel username or ID
-  const channel1 = "-1001969261580";
+  // const channel1 = "-1001969261580";
   const message = `
         🌞 Token Name | ${tg_name}
 📜 CA: <code>${tg_address}</code>
@@ -380,4 +381,9 @@ function sendAutoMessage(
   //   });
 }
 
-main();
+const app = express();
+
+app.listen(8080, () => {
+  console.log("Server is runnning");
+  main();
+});
