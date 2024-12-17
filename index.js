@@ -19,13 +19,11 @@ import IUniswapV2PairAbi from "./ABIs/IUniswapV2Pair.js";
 import { ethers } from "ethers/lib/index.js";
 import { match } from "./utils.js";
 import { getUniv2PairAddress } from "./univ2funcs.js";
-import IERC20ABI from "./ABIs/IERC20.js";
-import { url } from "inspector";
 const require = createRequire(import.meta.url);
 const abiDecoder = require("abi-decoder");
 const TelegramBot = require("node-telegram-bot-api");
 abiDecoder.addABI(IUniswapV2PairAbi);
-const express = require("express");
+// const express = require("express");
 
 const iface = new ethers.utils.Interface(IUniswapV2PairAbi);
 const bot = new TelegramBot(process.env.BOT_ID, { polling: true });
@@ -54,6 +52,7 @@ const analyzeBlock = async (blk) => {
         // If the pair is uniswap v2 pair
         token0 = await UniswapV2PairContract.attach(pair).token0();
         token1 = await UniswapV2PairContract.attach(pair).token1();
+
         if (
           pair !==
           getUniv2PairAddress({ tokenA: token0, tokenB: token1 }).toLowerCase()
@@ -93,6 +92,7 @@ const analyzeBlock = async (blk) => {
           }
           if (swapDirection == 0) buyCount++;
         }
+
         if (buyCount < 20) continue;
         const token = match(token0, WETH) ? token1 : token0;
 
@@ -381,9 +381,11 @@ function sendAutoMessage(
   //   });
 }
 
-const app = express();
+// const app = express();
 
-app.listen(8080, () => {
-  console.log("Server is runnning");
-  main();
-});
+// app.listen(8080, () => {
+//   console.log("Server is runnning");
+//   main();
+// });
+
+main();
